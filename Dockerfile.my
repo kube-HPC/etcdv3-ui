@@ -1,0 +1,8 @@
+FROM soyking/e3w
+RUN apk update && apk --no-cache add gettext
+COPY conf/conf.ini /app/conf
+ENV ETCD_CLIENT_SERVICE_HOST localhost
+ENV ETCD_CLIENT_SERVICE_PORT 4001
+ENV ROOT_KEY /root
+ADD ./start.sh /app/start.sh
+CMD ["/bin/sh","-c","./start.sh"]
